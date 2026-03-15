@@ -4,6 +4,8 @@
  * Run with: npm run test:auth (from packages/api)
  */
 
+/// <reference types="vitest" />
+import { test, expect } from 'vitest';
 import {
   hashPassword,
   comparePassword,

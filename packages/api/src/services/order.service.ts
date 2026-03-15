@@ -34,7 +34,6 @@ export const orderService = {
       productName: item.name,
       price: item.price,
       quantity: item.quantity,
-      discount: item.discount || 0,
       subtotal: item.price * item.quantity,
     }));
 

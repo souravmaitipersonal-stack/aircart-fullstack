@@ -255,6 +255,7 @@ export async function createProduct(
   const product: Product = {
     id,
     ...req,
+    tags: req.tags || [],
     rating: 0,
     reviewCount: 0,
     isActive: true,

@@ -130,10 +130,10 @@ export interface Cart {
 
 export interface CartItem {
   productId: string;
-  productName: string;
+  productName?: string;
   price: number;
   quantity: number;
-  image: string;
+  image?: string;
   subtotal: number;
 }
 

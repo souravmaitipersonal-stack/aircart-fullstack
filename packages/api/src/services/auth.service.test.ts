@@ -5,7 +5,7 @@
  */
 
 /// <reference types="vitest" />
-import { test, expect } from 'vitest';
+import { test, expect, describe } from 'vitest';
 import {
   hashPassword,
   comparePassword,

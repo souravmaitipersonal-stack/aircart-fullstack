@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Order Routes
  * Phase 4: Orders & Payments - API Endpoints

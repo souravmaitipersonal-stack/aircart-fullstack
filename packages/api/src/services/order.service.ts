@@ -31,7 +31,7 @@ export const orderService = {
     // Create order items with calculations
     const orderItems = request.items.map((item) => ({
       productId: item.productId,
-      productName: item.name,
+      productName: item.productName || 'Product',
       price: item.price,
       quantity: item.quantity,
       subtotal: item.price * item.quantity,

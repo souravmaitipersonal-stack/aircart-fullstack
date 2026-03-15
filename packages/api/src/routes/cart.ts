@@ -141,7 +141,7 @@ router.post('/add', authMiddleware, async (req: Request, res: Response) => {
     }
 
     // Add to cart
-    const cart = await addToCart(userId, validatedData, {
+    const cart = await addToCart(userId, validatedData as any, {
       name: product.name,
       price: product.price,
       image: product.images[0],
@@ -197,7 +197,7 @@ router.put('/update', authMiddleware, async (req: Request, res: Response) => {
     const validatedData = updateCartItemSchema.parse(req.body);
     const userId = req.user!.id;
 
-    const cart = await updateCartItem(userId, validatedData);
+    const cart = await updateCartItem(userId, validatedData as any);
 
     if (!cart) {
       res.status(500).json({

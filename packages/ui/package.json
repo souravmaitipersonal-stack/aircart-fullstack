@@ -1,0 +1,13 @@
+{
+  "name": "@aircart/ui",
+  "version": "1.0.0",
+  "description": "Shared React UI components",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "echo 'UI package - no tests yet'"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "name": "aircart",
+  "version": "1.0.0",
+  "description": "AirCart - E-Commerce, Elevated",
+  "private": true,
+  "packageManager": "npm@8.19.2",
+  "scripts": {
+    "dev": "turbo run dev --parallel --filter './apps/*' --filter './packages/*'",
+    "build": "turbo run build --filter './apps/*' --filter './packages/*'",
+    "test": "turbo run test --filter './apps/*' --filter './packages/*'",
+    "lint": "turbo run lint --filter './apps/*' --filter './packages/*'",
+    "format": "prettier --write \"**/*.{js,ts,jsx,tsx,json,css,md}\"",
+    "format:check": "prettier --check \"**/*.{js,ts,jsx,tsx,json,css,md}\"",
+    "clean": "turbo run clean && del /s /q node_modules"
+  },
+  "devDependencies": {
+    "turbo": "^2.0.0",
+    "prettier": "^3.1.1",
+    "eslint": "^9.0.0",
+    "typescript": "^5.4.0",
+    "husky": "^9.0.0",
+    "lint-staged": "^15.2.0"
+  },
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "lint-staged": {
+    "*.{js,ts,jsx,tsx}": ["eslint --fix"],
+    "*.{js,ts,jsx,tsx,json,css,md}": ["prettier --write"]
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "@aircart/utils",
+  "version": "1.0.0",
+  "description": "Shared utility functions",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "echo 'Utils package - no tests'"
+  }
+}

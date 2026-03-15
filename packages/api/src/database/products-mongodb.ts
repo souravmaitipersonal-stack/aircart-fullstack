@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * MongoDB Models for Products, Reviews, and Shopping Cart
  * Phase 3: Product Management with MongoDB

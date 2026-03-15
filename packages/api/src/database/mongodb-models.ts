@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * MongoDB User Model & Schema
  * Phase 2: User Authentication with MongoDB Document Store

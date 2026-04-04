@@ -37,11 +37,14 @@ export interface Product {
   name: string;
   description: string;
   price: number;
+  originalPrice?: number;
+  discount?: number;
   stock: number;
   category: string;
   image: string;
   rating: number;
   reviews: number;
+  tags?: string[];
   createdAt: Date;
   updatedAt: Date;
 }

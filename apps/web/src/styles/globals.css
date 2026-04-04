@@ -1,6 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* CSS Variables for AirCart Dark Theme */
+:root {
+  --bg: #07070f;
+  --surface: #0e0e1a;
+  --card: #13131f;
+  --card2: #181828;
+  --accent: #5b8aff;
+  --teal: #2fd4b8;
+  --white: #f0f0ff;
+  --muted: #7070a0;
+  --border: rgba(255,255,255,0.07);
+  --star: #f9c831;
+  --green: #34d97a;
+  --red: #ff5757;
+}
 
 * {
   @apply box-border;
@@ -11,16 +29,17 @@ html {
 }
 
 body {
-  @apply bg-neutral-50 text-neutral-900 font-sans;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  @apply bg-slate-900 text-slate-100 font-sans;
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color-scheme: dark;
 }
 
 a {
-  @apply text-primary-600 hover:text-primary-700 transition-colors;
+  @apply text-blue-400 hover:text-cyan-400 transition-colors;
 }
 
 button {
@@ -32,17 +51,50 @@ button {
 }
 
 .btn-primary {
-  @apply bg-primary-600 text-white hover:bg-primary-700 shadow-card hover:shadow-hover;
+  @apply bg-gradient-to-r from-blue-500 to-cyan-500 text-white hover:opacity-90 shadow-lg;
 }
 
 .btn-secondary {
-  @apply bg-neutral-200 text-neutral-900 hover:bg-neutral-300;
+  @apply bg-slate-700 text-slate-100 hover:bg-slate-600;
 }
 
 .card {
-  @apply bg-white rounded-lg shadow-card p-4 hover:shadow-hover transition-shadow;
+  @apply bg-slate-800 rounded-lg shadow-lg p-4 hover:shadow-xl transition-shadow border border-slate-700;
 }
 
 .container-wide {
   @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  @apply font-bold text-slate-100;
+}
+
+h1 {
+  @apply text-4xl md:text-5xl font-extrabold;
+  font-family: 'Syne', sans-serif;
+}
+
+h2 {
+  @apply text-3xl md:text-4xl;
+  font-family: 'Syne', sans-serif;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(15, 23, 42);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(71, 85, 105);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(100, 116, 139);
 }

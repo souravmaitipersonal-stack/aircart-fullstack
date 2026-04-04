@@ -17,6 +17,7 @@ import {
 import { authMiddleware } from '../middleware/auth.middleware';
 import { logInfo, logError, logSuccess } from '../config/logger';
 import { User, CreateUserRequest, LoginRequest, AuthResponse } from '../models/User';
+import { userStore, initializeUserStore } from '../store/users';
 
 const router = Router();
 
@@ -33,21 +34,9 @@ const loginSchema = z.object({
   password: z.string().min(1, 'Password required'),
 });
 
-// In-memory user store for Phase 2 demo (replace with database in Phase 3)
-// Key: email, Value: User object with hashed password
-const userStore = new Map<string, User & { password: string }>();
-
-// Demo admin user
-userStore.set('admin@aircart.com', {
-  id: 'admin-001',
-  email: 'admin@aircart.com',
-  password: '$2a$10$sealed_demo_hash', // Demo hash, replace in production
-  name: 'Admin User',
-  phone: '+1-800-555-0100',
-  role: 'admin',
-  isActive: true,
-  createdAt: new Date(),
-  updatedAt: new Date(),
+// Initialize user store with demo admin
+initializeUserStore().catch(err => {
+  logError('Failed to initialize user store', err);
 });
 
 /**

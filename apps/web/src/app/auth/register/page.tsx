@@ -9,6 +9,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { authAPI } from '@/lib/api';
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -65,35 +66,43 @@ export default function RegisterPage() {
     setLoading(true);
 
     try {
-      const response = await fetch('http://localhost:5000/api/auth/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: formData.email,
-          password: formData.password,
-          name: formData.name,
-          phone: formData.phone || undefined,
-        }),
+      console.log('Attempting registration with:', { email: formData.email, name: formData.name });
+      
+      const response = await authAPI.register({
+        email: formData.email,
+        password: formData.password,
+        name: formData.name,
+        phone: formData.phone || undefined,
       });
 
-      const data = await response.json();
+      console.log('Registration response:', response);
 
-      if (!response.ok) {
-        setError(data.message || 'Registration failed');
+      if (!response.success) {
+        const errorMessage = response.error || 'Registration failed';
+        console.error('Registration failed:', errorMessage);
+        setError(errorMessage);
         return;
       }
 
-      // Store token
-      localStorage.setItem('token', data.data.token);
-      localStorage.setItem('user', JSON.stringify(data.data.user));
+      // Store token and user data
+      const responseData = response.data as any;
+      if (responseData?.token) {
+        localStorage.setItem('token', responseData.token);
+        console.log('Token stored');
+      }
+      if (responseData?.user) {
+        localStorage.setItem('user', JSON.stringify(responseData.user));
+        localStorage.setItem('newUser', 'true'); // Mark as new user for welcome message
+        console.log('User data stored:', responseData.user);
+      }
 
-      // Redirect to dashboard
+      console.log('Registration successful, redirecting to dashboard...');
+      // Redirect to dashboard after successful signup
       router.push('/dashboard');
     } catch (err) {
-      setError('Network error. Please try again.');
-      console.error('Register error:', err);
+      const errorMsg = err instanceof Error ? err.message : 'Network error occurred';
+      console.error('Registration error details:', err);
+      setError(`Failed to connect to server: ${errorMsg}. Make sure the backend is running on http://localhost:5000`);
     } finally {
       setLoading(false);
     }

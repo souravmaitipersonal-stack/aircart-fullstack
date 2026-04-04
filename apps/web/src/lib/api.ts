@@ -199,3 +199,35 @@ export const authAPI = {
       method: 'POST',
     }),
 };
+
+/**
+ * Admin User Management API
+ */
+export const adminUsersAPI = {
+  // Get all users (admin only)
+  getAll: () => apiRequest('/admin/users'),
+
+  // Get single user by email
+  getByEmail: (email: string) =>
+    apiRequest(`/admin/users/${encodeURIComponent(email)}`),
+
+  // Create new user
+  create: (data: { name: string; email: string; password: string; phone?: string; role?: 'admin' | 'customer'; isActive?: boolean }) =>
+    apiRequest('/admin/users', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    }),
+
+  // Update user
+  update: (email: string, data: { name?: string; phone?: string; password?: string; role?: string; isActive?: boolean }) =>
+    apiRequest(`/admin/users/${encodeURIComponent(email)}`, {
+      method: 'PUT',
+      body: JSON.stringify(data),
+    }),
+
+  // Delete user
+  delete: (email: string) =>
+    apiRequest(`/admin/users/${encodeURIComponent(email)}`, {
+      method: 'DELETE',
+    }),
+};

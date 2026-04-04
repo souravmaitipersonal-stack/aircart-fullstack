@@ -6,6 +6,7 @@ import productRoutes from './routes/products';
 import cartRoutes from './routes/cart';
 import ordersRoutes from './routes/orders';
 import webhooksRoutes from './routes/webhooks';
+import adminUsersRoutes from './routes/admin-users';
 import { logInfo, logSuccess } from './config/logger';
 
 // Load environment variables
@@ -42,6 +43,9 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 
 // Authentication routes (Phase 2)
 app.use('/api/auth', authRoutes);
+
+// Admin routes (User Management)
+app.use('/api/admin/users', adminUsersRoutes);
 
 // Products routes (Phase 3)
 app.use('/api/products', productRoutes);
